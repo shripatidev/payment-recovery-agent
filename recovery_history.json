@@ -1,0 +1,30 @@
+[
+    {
+        "payment_id": "PAY1002",
+        "amount": 1200,
+        "failure_reason": "Insufficient funds",
+        "strategy": "retry_later",
+        "outcome": "recovered"
+    },
+    {
+        "payment_id": "PAY1002",
+        "amount": 1200,
+        "failure_reason": "Insufficient funds",
+        "strategy": "retry_later",
+        "outcome": "recovered"
+    },
+    {
+        "payment_id": "PAY1003",
+        "amount": 750,
+        "failure_reason": "Card expired",
+        "strategy": "update_payment_method",
+        "outcome": "recovered"
+    },
+    {
+        "payment_id": "PAY1004",
+        "amount": 2000,
+        "failure_reason": "Bank declined the transaction",
+        "strategy": "alternate_payment_method",
+        "outcome": "failed"
+    }
+]

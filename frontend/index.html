@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment Recovery Agent</title>
+
+    <link rel="stylesheet" href="/frontend/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">₹</div>
+
+                <div>
+                    <h2>RecoveryAI</h2>
+                    <span>Payment Intelligence</span>
+                </div>
+            </div>
+
+            <nav>
+                <a class="active" href="#">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a href="#">
+                    <span>◉</span>
+                    Failed Payments
+                </a>
+
+                <a href="#">
+                    <span>↻</span>
+                    Recovery Queue
+                </a>
+
+                <a href="#">
+                    <span>◈</span>
+                    Analytics
+                </a>
+            </nav>
+
+            <div class="agent-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>Agent Online</strong>
+                    <small>AI recovery engine active</small>
+                </div>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Payment Recovery Dashboard</h1>
+                    <p>Monitor and recover failed payments intelligently.</p>
+                </div>
+
+                <div class="topbar-right">
+                    <span class="live-badge">
+                        ● LIVE
+                    </span>
+
+                    <div class="avatar">
+                        A
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- Statistics -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-label">
+                        Recovery Cases
+                    </div>
+
+                    <div class="stat-value" id="totalCases">
+                        4
+                    </div>
+
+                    <div class="stat-info">
+                        Total recovery attempts
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-label">
+                        Recovered
+                    </div>
+
+                    <div class="stat-value" id="recovered">
+                        3
+                    </div>
+
+                    <div class="stat-info">
+                        Successful recoveries
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-label">
+                        Failed
+                    </div>
+
+                    <div class="stat-value" id="failed">
+                        1
+                    </div>
+
+                    <div class="stat-info">
+                        Unsuccessful recoveries
+                    </div>
+                </div>
+
+
+                <div class="stat-card highlight">
+                    <div class="stat-label">
+                        Recovery Rate
+                    </div>
+
+                    <div class="stat-value" id="recoveryRate">
+                        75%
+                    </div>
+
+                    <div class="stat-info">
+                        Overall recovery performance
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- Content Grid -->
+            <section class="content-grid">
+
+
+                <!-- Failed Payments -->
+                <div class="panel payments-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Failed Payments</h2>
+                            <p>Payments requiring recovery</p>
+                        </div>
+
+                        <button class="refresh-btn" onclick="refreshDashboard()">
+                            ↻ Refresh
+                        </button>
+
+                    </div>
+
+
+                    <div class="payment-list">
+
+                        <div class="payment-row">
+
+                            <div class="payment-id">
+                                <strong>PAY1004</strong>
+                                <span>Sneha</span>
+                            </div>
+
+                            <div class="payment-reason">
+                                <strong>₹2,000</strong>
+                                <span>Bank declined</span>
+                            </div>
+
+                            <div>
+                                <span class="priority high">
+                                    HIGH
+                                </span>
+                            </div>
+
+                            <button onclick="showPayment('PAY1004')">
+                                View →
+                            </button>
+
+                        </div>
+
+
+                        <div class="payment-row">
+
+                            <div class="payment-id">
+                                <strong>PAY1003</strong>
+                                <span>Arjun</span>
+                            </div>
+
+                            <div class="payment-reason">
+                                <strong>₹750</strong>
+                                <span>Card expired</span>
+                            </div>
+
+                            <div>
+                                <span class="priority high">
+                                    HIGH
+                                </span>
+                            </div>
+
+                            <button onclick="showPayment('PAY1003')">
+                                View →
+                            </button>
+
+                        </div>
+
+
+                        <div class="payment-row">
+
+                            <div class="payment-id">
+                                <strong>PAY1002</strong>
+                                <span>Priya</span>
+                            </div>
+
+                            <div class="payment-reason">
+                                <strong>₹1,200</strong>
+                                <span>Insufficient funds</span>
+                            </div>
+
+                            <div>
+                                <span class="priority medium">
+                                    MEDIUM
+                                </span>
+                            </div>
+
+                            <button onclick="showPayment('PAY1002')">
+                                View →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI Assistant -->
+                <div class="panel assistant-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>AI Recovery Assistant</h2>
+                            <p>Ask about any payment</p>
+                        </div>
+
+                        <span class="ai-badge">
+                            AI
+                        </span>
+
+                    </div>
+
+
+                    <div class="chat-box" id="chatBox">
+
+                        <div class="message agent-message">
+
+                            <div class="message-icon">
+                                AI
+                            </div>
+
+                            <div>
+                                <p>
+                                    Hello! I'm your payment recovery
+                                    agent. Ask me about a failed payment.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-input">
+
+                        <input
+                            type="text"
+                            id="userInput"
+                            placeholder="Ask: Why did PAY1004 fail?"
+                            onkeydown="handleEnter(event)"
+                        >
+
+                        <button onclick="askAgent()">
+                            Ask
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Payment Details -->
+            <section
+                class="panel details-panel"
+                id="detailsPanel"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2 id="detailTitle">
+                            Select a payment
+                        </h2>
+
+                        <p id="detailSubtitle">
+                            Click "View" to inspect recovery information.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="details-content"
+                    id="detailsContent"
+                >
+
+                    <div class="empty-state">
+                        <div>◎</div>
+                        <p>No payment selected</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="/frontend/script.js"></script>
+
+</body>
+</html>
