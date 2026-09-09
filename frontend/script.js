@@ -6,7 +6,7 @@ const payments = {
         reason: "Insufficient funds",
         strategy: "retry_later",
         priority: "MEDIUM",
-        score: 60,
+        score: 70,
         history: "100%"
     },
 
@@ -15,7 +15,7 @@ const payments = {
         amount: 750,
         reason: "Card expired",
         strategy: "update_payment_method",
-        priority: "HIGH",
+        priority: "MEDIUM",
         score: 68,
         history: "100%"
     },
@@ -25,8 +25,8 @@ const payments = {
         amount: 2000,
         reason: "Bank declined the transaction",
         strategy: "alternate_payment_method",
-        priority: "HIGH",
-        score: 67,
+        priority: "MEDIUM",
+        score: 60,
         history: "0%"
     }
 
